@@ -45,12 +45,6 @@ class Database {
 
     public function realizar($pedido) {
         return $this->converter_resultado_tabela($this->conexao->query($pedido));
-        /*$resultado = $this->conexao->query($pedido);
-        if($resultado){
-            return $resultado;
-        }else{
-            return false;
-        }*/
     }
     private function converter_resultado_tabela($resultado) {
         $tabela = array();
