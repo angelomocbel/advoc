@@ -12,6 +12,7 @@
  * @author migue_000
  */
 class Cliente {
+    private $id;
     private $nome;
     private $rg;
     private $cpf;
@@ -26,14 +27,34 @@ class Cliente {
     private $email;
     private $obs;
     
-    public $insert = "INSERT INTO clientes () VALUES";
-    public $delete = "";
-    public $update = "";
-    public $selectAll = "";
-    public $selectById = "";
-    public $selectByNome = "";
-    public $selectByRg = "";
-    public $selectByCpf = "";
+    private $tabela = "cliente";
+    private $campos = "nome, rg, cpf, nascimento, estado_civil, endereco, bairro, cidade, estado"
+            . "telefone, celular, email, obs";
+    
+    public function getTabela() {
+        return $this->tabela;
+    }
+
+    public function getCampos() {
+        return $this->campos;
+    }
+
+    public function getValores(){
+        return "'".$this->getNome()."', '".$this->getRg()."', '".
+        $this->getNascimento()."', '".$this->getEstado_civil()."', '".
+        $this->getEndereco()."', '".$this->getBairro()."', '".
+        $this->getCidade()."', '".$this->getEstado()."', '".
+        $this->getTelefone()."', '".$this->getCelular()."', '".
+        $this->getEmail()."', '".$this->getObs()."'";
+    }
+    
+    public function getValoresUpdate(){
+        return "";
+    }
+    
+     public function getId() {
+        return $this->id;
+    }
     
     public function getNome() {
         return $this->nome;
@@ -86,7 +107,11 @@ class Cliente {
     public function getObs() {
         return $this->obs;
     }
-
+    
+    public function setId($id) {
+        $this->id = $id;
+    }
+    
     public function setNome($nome) {
         $this->nome = $nome;
     }

@@ -13,21 +13,6 @@ class Database {
     public function __destruct() {
         $this->desconectar();
     }
-    /* public function conectar(){
-      if(!mysql_connect($this->servidor, $this->usuario, $this->senha)){
-      print("Erro de Conexão");
-      return -1;
-      }
-      if(!mysql_select_db($this->banco_de_dados)){
-      $this->realizar("CREATE DATABASE $this->banco_de_dados ;");
-      if(!mysql_select_db($this->banco_de_dados)){
-      print("Erro de direito de usuário");
-      return -2;
-      }
-      }
-      return 0;
-      } */
-
     public function conectar() {
         $this->conexao = new mysqli(SERVIDOR, USUARIO, SENHA, BANCO);
         if (mysqli_connect_errno()) {
@@ -65,5 +50,19 @@ class Database {
             $n++;
         }
         return $tabela;
+    }
+    
+    public function salvar($obtejo){
+        $pedido = "INSERT INTO ".$obtejo->getTabela()." (".$objeto->getCampos().") VALUES(".$objeto->getValores().");";
+        return $this->realizar($pedido);
+    }
+    
+    public function excluir($objeto){
+        $pedido = "DELETE FROM ".$objeto->getTabela()." WHERE = ".$objeto->getId().";";
+        return $this->realizar($pedido);
+    }
+    
+    public function atualizar($objeto){
+        $pedido = "UPDATE ".$objeto->getTabela()." SET "."";
     }
 }
